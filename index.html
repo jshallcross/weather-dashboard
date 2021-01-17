@@ -21,7 +21,7 @@
             <div class="col-3">
                 <p class="seacrh-p">Search for a City:</p>
                 <form id="search-form">
-                    <input class="form-input" type="text"/>
+                    <input class="form-input" id="city-name" type="text"/>
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
                 <ul class="list-group">
@@ -36,11 +36,11 @@
             <!--Results Column-->
             <div class="col-9">
                 <div class="card">
-                    <h2 class="card-header">Atlanta (8/15/2019</h2>
-                    <p class="card-text">Temperature:</p>
-                    <p class="card-text">Humidity:</p>
-                    <p class="card-text">Wind Speed:</p>
-                    <p class="card-text">UV Index:</p>
+                    <h2 class="card-header" id="city-title"></h2>
+                    <p class="card-text">Temperature: <span id="city-temp"></span></p>
+                    <p class="card-text">Humidity: <span id="city-humidity"></span></p>
+                    <p class="card-text">Wind Speed: <span id="city-wind-speed"></span></p>
+                    <p class="card-text">UV Index: <span id="city-uv"></span></p>
                 </div>
                 <h2>5-Day Forecast:</h2>
                 <div class="row">
