@@ -1,0 +1,46 @@
+
+#date1, #date2, #date3, #date4, #date5 {
+    font-size:1.3rem;
+    
+}
+
+.day {
+    background-color:lightblue;
+    height: 200px;
+}
+
+.card-text {
+    font-size:1rem;
+}
+
+
+
+search-icon {
+    background-color:blue;
+    font-size: 2rem;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.red {
+    background-color: red;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.green {
+    background-color: green;
+}
+
+.violet {
+    background-color:violet;
+}
+
+.search-p {
+    font-size: 1.3rem;
+    padding-left: 5px;
+}
