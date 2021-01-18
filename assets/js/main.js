@@ -1,11 +1,8 @@
-//6ff03c7dd938ec5f83f0848f7fb2180b
-var apiKey = "6ff03c7dd938ec5f83f0848f7fb2180b";
 
 var today = moment().format("L");
-console.log(today);
 
+var searchBtn = document.querySelector("#search");
 
-var mainIconEl = document.querySelector("#main-icon");
 var searchFormEl = document.querySelector("#search-form");
 var cityInputEl = document.querySelector("#city-name");
 var cityTitleEl = document.querySelector("#city-title");
@@ -13,6 +10,8 @@ var spanTempEl = document.querySelector("#city-temp");
 var spanHumidityEl = document.querySelector("#city-humidity");
 var spanWindSpeedEl = document.querySelector("#city-wind-speed");
 var spanUvEl = document.querySelector("#city-uv");
+var listItemEl = document.querySelector("#list");
+
 // 5 day date elements
 var dateEl1 = document.querySelector("#date1");
 var dateEl2 = document.querySelector("#date2");
@@ -40,6 +39,8 @@ var spanHumidityEl4 = document.querySelector("#city-humidity4");
 var spanHumidityEl5 = document.querySelector("#city-humidity5");
 
 
+var citiesSearched = [];
+
 
 
 var searchSubmitHandler = function(event) {
@@ -54,13 +55,27 @@ var searchSubmitHandler = function(event) {
     }
 }
 
+searchBtn.addEventListener("click", function(event) {
+    
+    var citySearched = document.querySelector("#city-name").value;
+    localStorage.setItem('citySearched', citySearched);
+    
+});
 
+// Display previous searches
+function displaySearches() {
+    var citySearched = localStorage.getItem('citySearched');
+    listItems = document.createElement("li");
+    listItems.textContent = citySearched;
+    listItems.classList.add("list-group-item");
+    listItemEl.appendChild(listItems);  
+}
 
 
 var getCityWeather = function(city) {
 
 var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=" +apiKey+ "&units=metric";
-
+    displaySearches();
     fetch(apiUrl)
         .then(function(response) {
             if (response.ok) {
@@ -72,10 +87,7 @@ var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="
                     // Display city name and date
                     var cityTitle = data.name;
                     cityTitleEl.textContent = cityTitle + " " +"(" + today + ")";
-                    var mainIconCode = data.weather[0].icon;
-                    var mainIconUrl = "http://openweathermap.org/img/w/" + mainIconCode + ".png";
-                    mainIconEl.setAttribute("src", mainIconUrl);
-                    console.log(mainIconEl, mainIconCode, mainIconUrl);
+                    
                     // Displays current temp/humidity/wind speed/Uv index
                     var cityTemp = data.main.temp;
                     var cityTemp = Math.round(cityTemp) + " °C";
@@ -170,13 +182,6 @@ var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="
                     .catch(function (error) {
                         alert("Unable to connect to open weather");
                     });
-
-
-
-
-                    
-
-
                 });
             } else {
                 alert("error:" + response.statusText);
@@ -191,5 +196,5 @@ var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="
 
 
 
-
+displaySearches();
 searchFormEl.addEventListener("submit", searchSubmitHandler);
