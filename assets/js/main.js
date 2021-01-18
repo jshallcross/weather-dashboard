@@ -1,4 +1,4 @@
-
+var apiKey = "6ff03c7dd938ec5f83f0848f7fb2180b";
 var today = moment().format("L");
 
 var searchBtn = document.querySelector("#search");
